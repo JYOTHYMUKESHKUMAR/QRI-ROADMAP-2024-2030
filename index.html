@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRI Strategic Roadmap 2024-2030</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .navigation {
+            background: #34495e;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background-color: #2c3e50;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .overview-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            border-radius: 5px;
+            transition: width 0.3s;
+        }
+        
+        .kpa-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .kpa-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+        
+        .kpa-card h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .strategic-outcomes {
+            list-style: none;
+            padding-left: 1rem;
+        }
+        
+        .strategic-outcomes li {
+            position: relative;
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .strategic-outcomes li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .timeline-nav {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .year-button {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .year-button.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .year-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: black;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .timeline-nav {
+                gap: 0.5rem;
+            }
+            
+            .year-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>QRI Strategic Roadmap</h1>
+        <p>2024-2030 | Redefining Global Standards in Transformative Rehabilitation</p>
+    </div>
+    
+    <nav class="navigation">
+        <div class="nav-links">
+            <a href="#" class="nav-link active" onclick="showSection('dashboard')">Dashboard</a>
+            <a href="kpa1.html" class="nav-link" onclick="showSection('kpa1')">KPA 1: Universal Access</a>
+            <a href="kpa2.html" class="nav-link" onclick="showSection('kpa2')">KPA 2: Innovation</a>
+            <a href="kpa3.html" class="nav-link" onclick="showSection('kpa3')">KPA 3: Workforce</a>
+            <a href="assignment.html" class="nav-link" onclick="showSection('assignments')">Assignments</a>
+            <a href="#" class="nav-link" onclick="showSection('timeline')">Timeline</a>
+            <a href="#" class="nav-link" onclick="showSection('reports')">Reports</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div id="dashboard" class="section">
+            <div class="overview-cards">
+                <div class="card">
+                    <h3>Vision</h3>
+                    <p>Be a recognized leader in rehabilitation. Trusted to deliver high-quality, high-value, innovative care for all.</p>
+                </div>
+                <div class="card">
+                    <h3>Mission</h3>
+                    <p>To serve the community as a national and regional leader in rehabilitation services, offering a world-class, person-centered continuum of care through an interdisciplinary approach.</p>
+                </div>
+                <div class="card">
+                    <h3>Overall Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%"></div>
+                    </div>
+                    <p>25% Complete</p>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Key Priority Areas</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">10</span>
+                    <span class="stat-label">Strategic Outcomes</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">79</span>
+                    <span class="stat-label">Deliverables</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2030</span>
+                    <span class="stat-label">Target Year</span>
+                </div>
+            </div>
+            
+            <div class="kpa-overview">
+                <div class="kpa-card">
+                    <h4>KPA 1: Universal & Equitable Rehabilitation Access</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%"></div>
+                    </div>
+                    <p>30% Complete</p>
+                    <ul class="strategic-outcomes">
+                        <li>High-Value, Efficient Care Delivery</li>
+                        <li>Trusted Patient-Centered Rehabilitation Care</li>
+                        <li>Accessible and Inclusive Rehabilitation Care</li>
+                        <li>Integrated Care Across the Continuum</li>
+                    </ul>
+                </div>
+                
+                <div class="kpa-card">
+                    <h4>KPA 2: Innovative Rehabilitation Ecosystem</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 20%"></div>
+                    </div>
+                    <p>20% Complete</p>
+                    <ul class="strategic-outcomes">
+                        <li>Innovation in Rehabilitation and Data-Driven Decision Making</li>
+                        <li>Public Awareness and Visibility</li>
+                        <li>Community Empowerment and Integration</li>
+                        <li>Rehabilitation Health Tourism Strategy</li>
+                    </ul>
+                </div>
+                
+                <div class="kpa-card">
+                    <h4>KPA 3: Sustainable Rehabilitation Workforce</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%"></div>
+                    </div>
+                    <p>25% Complete</p>
+                    <ul class="strategic-outcomes">
+                        <li>Workforce Development and Incentives</li>
+                        <li>Building Research and Academic Capabilities</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="timeline-nav">
+                <button class="year-button active" onclick="showYear(2024)">2024</button>
+                <button class="year-button" onclick="showYear(2025)">2025</button>
+                <button class="year-button" onclick="showYear(2026)">2026</button>
+                <button class="year-button" onclick="showYear(2027)">2027</button>
+                <button class="year-button" onclick="showYear(2028)">2028</button>
+                <button class="year-button" onclick="showYear(2029)">2029</button>
+                <button class="year-button" onclick="showYear(2030)">2030</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Global data for the roadmap
+        const roadmapData = {
+            kpa1: {
+                name: "Universal & Equitable Rehabilitation Access",
+                so: [
+                    {
+                        name: "High-Value, Efficient Care Delivery",
+                        deliverables: [
+                            "Implementation of Cost-Effective Treatment Models",
+                            "Integrate digital health tools",
+                            "Resource Management",
+                            "Performance Metrics and Outcome Measurement",
+                            "Financial Sustainability Programs",
+                            "Patient Flow Optimization",
+                            "Staff Training and Lean Management",
+                            "Collaboration and Partnerships",
+                            "Eco-Friendly Practices",
+                            "Patient Education and Self-Management"
+                        ]
+                    },
+                    {
+                        name: "Trusted Patient-Centered Rehabilitation Care",
+                        deliverables: [
+                            "Enhanced Patient Engagement Platforms",
+                            "Patient and family advocacy Programs",
+                            "Personalized Rehabilitation Plans",
+                            "Improved Patient, family, and caregiver Education",
+                            "Quality of Life Assessments",
+                            "Integration of Holistic Health Approaches",
+                            "Patient Experience Officers"
+                        ]
+                    },
+                    {
+                        name: "Accessible and Inclusive Rehabilitation Care",
+                        deliverables: [
+                            "Age and Mobility-Friendly hospitals",
+                            "Hospital wide 'Activity and Mobility Program' (AMP)",
+                            "Universal Access to Assistive Technology",
+                            "Access Enhancement Through Digital Platforms",
+                            "Equity in Service Provision",
+                            "Integration of Services",
+                            "New rehabilitation Programs"
+                        ]
+                    },
+                    {
+                        name: "Integrated Care Across the Continuum",
+                        deliverables: [
+                            "Continuum of Care Framework Development",
+                            "Interdisciplinary culture development & team Coordination",
+                            "Patient Navigation and Case Management",
+                            "Technology Integration for Seamless Care Transitions",
+                            "Early and Continuous Rehabilitation Assessment",
+                            "Feedback Mechanisms for Patient and Caregiver",
+                            "Sustainable Funding Models"
+                        ]
+                    }
+                ]
+            },
+            kpa2: {
+                name: "Innovative Rehabilitation Ecosystem",
+                so: [
+                    {
+                        name: "Innovation in Rehabilitation and Data-Driven Decision Making",
+                        deliverables: [
+                            "Rehabilitation Data System",
+                            "Precision Rehabilitation",
+                            "Centralised rehabilitation delivery system",
+                            "Data-Driven service Optimisation",
+                            "Automation and Integration",
+                            "Technology-Enhanced Training and Education",
+                            "E-Health Rehabilitation Services",
+                            "Predictive Health Modelling"
+                        ]
+                    },
+                    {
+                        name: "Public Awareness and Visibility",
+                        deliverables: [
+                            "Comprehensive Marketing Campaigns",
+                            "Collaborations with Media",
+                            "Digital Presence Enhancement",
+                            "Patient and Family Testimonials",
+                            "Public Relations Initiatives",
+                            "Participation in National and International Days",
+                            "International Recognitions"
+                        ]
+                    },
+                    {
+                        name: "Community Empowerment and Integration",
+                        deliverables: [
+                            "Collaboration with Community Organizations",
+                            "Accessible Infrastructure Projects",
+                            "Community Early Intervention and Rehab Hub",
+                            "Peer Support Networks",
+                            "Training for Community Members",
+                            "Accessibility Audits and Consultations",
+                            "Community Volunteer Programs",
+                            "Celebrating Diversity and Inclusion",
+                            "Digitalisation Community rehabilitation services",
+                            "Mobile Rehabilitation Teams"
+                        ]
+                    },
+                    {
+                        name: "Rehabilitation Health Tourism Strategy",
+                        deliverables: [
+                            "Tailored Rehabilitation Programs",
+                            "International Patient Concierge Service",
+                            "Cutting-Edge Rehabilitation Technology Showcase",
+                            "Outcome-Focused Rehabilitation Success Stories"
+                        ]
+                    }
+                ]
+            },
+            kpa3: {
+                name: "Sustainable Rehabilitation Workforce",
+                so: [
+                    {
+                        name: "Workforce Development and Incentives",
+                        deliverables: [
+                            "Structured Career Pathways",
+                            "Performance-Based Promotion",
+                            "Professional Development Opportunities",
+                            "Mentorship Programs",
+                            "Leadership Training",
+                            "Recognition Programs",
+                            "Financial Incentives",
+                            "Career Counseling Services",
+                            "Succession Planning"
+                        ]
+                    },
+                    {
+                        name: "Building Research and Academic Capabilities",
+                        deliverables: [
+                            "Certifications, Fellowship and Residency programs",
+                            "Training Workshops, Seminars & Online Learning Modules",
+                            "Clinical Observerships and Preceptorships",
+                            "Peer Learning and Case Reviews",
+                            "Clinical Skills Training and Simulation Labs",
+                            "Cultural Competency and Diversity Training",
+                            "Rehabilitation research training",
+                            "Rehab Research Collaboration Platforms",
+                            "Research Grants and Funding Opportunities",
+                            "Publication and Dissemination Support & Recognition and Awards",
+                            "Research & Innovation Incubators & QI clinics"
+                        ]
+                    }
+                ]
+            }
+        };
+        
+        // Function to show different sections
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.style.display = 'none');
+            
+            // Show selected section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+            
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        // Function to show different years
+        function showYear(year) {
+            // Update active year button
+            const yearButtons = document.querySelectorAll('.year-button');
+            yearButtons.forEach(button => button.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Here you would implement year-specific content display
+            console.log(`Showing year: ${year}`);
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial state
+            showSection('dashboard');
+        });
+    </script>
+</body>
+</html>

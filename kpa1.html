@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPA 1: Universal & Equitable Rehabilitation Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Updated Back Button Styles */
+        .back-button {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+        }
+        
+        .back-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.4);
+        }
+        
+        .back-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* With arrow icon */
+        .back-button-with-arrow {
+            display: inline-flex;
+            align-items: center;
+            background: #3498db;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+        }
+        
+        .back-button-with-arrow:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.4);
+        }
+        
+        .back-button-with-arrow .arrow {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .kpa-overview {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+        
+        .kpa-overview h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-section {
+            background: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #bdc3c7;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            width: 30%;
+        }
+        
+        .progress-text {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 0.5rem;
+        }
+        
+        .so-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .so-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid #3498db;
+        }
+        
+        .so-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .so-card h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .deliverables-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .deliverables-list li {
+            background: #f8f9fa;
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border-left: 3px solid #3498db;
+            transition: all 0.3s;
+        }
+        
+        .deliverables-list li:hover {
+            background: #e3f2fd;
+            border-left-color: #2980b9;
+        }
+        
+        .timeline-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-section h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-nav {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .year-button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .year-button.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .year-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .timeline-content {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .timeline-so {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-so h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-deliverables {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .timeline-deliverables li {
+            background: #f8f9fa;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border-left: 2px solid #3498db;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .so-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-nav {
+                gap: 0.5rem;
+            }
+            
+            .year-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>KPA 1: Universal & Equitable Rehabilitation Access</h1>
+        <p>Increase access to high-quality, high-value, efficient, inclusive & interdisciplinary patient-centered rehabilitation services across all regions of Qatar</p>
+    </div>
+    
+    <div class="container">
+<<<<<<< HEAD
+        <!-- OPTION 1: Simple blue button -->
+        <a href="index.html" class="back-button">Back To Dashboard</a>
+        
+        <!-- OPTION 2: Button with arrow -->
+        <!-- <a href="index.html" class="back-button-with-arrow">
+            <span class="arrow">←</span>Back To Dashboard
+        </a> -->
+        
+        <!-- OPTION 3: As a button element -->
+        <!-- <button class="back-button" onclick="window.location.href='index.html'">
+            Back To Dashboard
+        </button> -->
+=======
+       <button class="nav-btn" onclick="window.location.href='index.html'">
+    Back To Dashboard
+</button>
+>>>>>>> 1a34740b91f154f2d4c8268c45cad2d996682faf
+        
+        <div class="kpa-overview">
+            <h2>Overview</h2>
+            <p>This key priority area focuses on ensuring that all individuals in Qatar have equitable access to high-quality rehabilitation services. It emphasizes delivering care that is efficient, patient-centered, accessible, and integrated across the continuum of care.</p>
+            
+            <div class="progress-section">
+                <h3>Overall Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-text">30% Complete</div>
+            </div>
+        </div>
+        
+        <!-- Rest of your content... -->
+        <div class="so-grid">
+            <div class="so-card">
+                <h3>SO 1: High-Value, Efficient Care Delivery</h3>
+                <p>Implementing cost-effective treatment models and optimizing resource utilization to deliver high-value, efficient rehabilitation care.</p>
+                <ul class="deliverables-list">
+                    <li>Implementation of Cost-Effective Treatment Models</li>
+                    <li>Integrate digital health tools</li>
+                    <li>Resource Management</li>
+                    <li>Performance Metrics and Outcome Measurement</li>
+                    <li>Financial Sustainability Programs</li>
+                    <li>Patient Flow Optimization</li>
+                    <li>Staff Training and Lean Management</li>
+                    <li>Collaboration and Partnerships</li>
+                    <li>Eco-Friendly Practices</li>
+                    <li>Patient Education and Self-Management</li>
+                </ul>
+            </div>
+            
+            <div class="so-card">
+                <h3>SO 2: Trusted Patient-Centered Rehabilitation Care</h3>
+                <p>Enhancing patient engagement and personalized care to build trust and improve patient experience throughout the rehabilitation journey.</p>
+                <ul class="deliverables-list">
+                    <li>Enhanced Patient Engagement Platforms</li>
+                    <li>Patient and family advocacy Programs</li>
+                    <li>Personalized Rehabilitation Plans</li>
+                    <li>Improved Patient, family, and caregiver Education</li>
+                    <li>Quality of Life Assessments</li>
+                    <li>Integration of Holistic Health Approaches</li>
+                    <li>Patient Experience Officers</li>
+                </ul>
+            </div>
+            
+            <div class="so-card">
+                <h3>SO 3: Accessible and Inclusive Rehabilitation Care</h3>
+                <p>Creating age and mobility-friendly environments and ensuring universal access to rehabilitation services for all populations.</p>
+                <ul class="deliverables-list">
+                    <li>Age and Mobility-Friendly hospitals</li>
+                    <li>Hospital wide 'Activity and Mobility Program' (AMP)</li>
+                    <li>Universal Access to Assistive Technology</li>
+                    <li>Access Enhancement Through Digital Platforms</li>
+                    <li>Equity in Service Provision</li>
+                    <li>Integration of Services</li>
+                    <li>New rehabilitation Programs</li>
+                </ul>
+            </div>
+            
+            <div class="so-card">
+                <h3>SO 4: Integrated Care Across the Continuum</h3>
+                <p>Ensuring seamless transitions and coordination across different levels of care to provide comprehensive rehabilitation services.</p>
+                <ul class="deliverables-list">
+                    <li>Continuum of Care Framework Development</li>
+                    <li>Interdisciplinary culture development & team Coordination</li>
+                    <li>Patient Navigation and Case Management</li>
+                    <li>Technology Integration for Seamless Care Transitions</li>
+                    <li>Early and Continuous Rehabilitation Assessment</li>
+                    <li>Feedback Mechanisms for Patient and Caregiver</li>
+                    <li>Sustainable Funding Models</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="timeline-section">
+            <h2>Implementation Timeline</h2>
+            <div class="timeline-nav">
+                <button class="year-button active" onclick="showYear(2024)">2024</button>
+                <button class="year-button" onclick="showYear(2025)">2025</button>
+                <button class="year-button" onclick="showYear(2026)">2026</button>
+                <button class="year-button" onclick="showYear(2027)">2027</button>
+                <button class="year-button" onclick="showYear(2028)">2028</button>
+                <button class="year-button" onclick="showYear(2029)">2029</button>
+                <button class="year-button" onclick="showYear(2030)">2030</button>
+            </div>
+            
+            <div class="timeline-content" id="timelineContent">
+                <div class="timeline-grid">
+                    <div class="timeline-so">
+                        <h4>High-Value, Efficient Care Delivery</h4>
+                        <ul class="timeline-deliverables">
+                            <li>Implementation of Cost-Effective Treatment Models</li>
+                            <li>Integrate digital health tools</li>
+                            <li>Resource Management</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-so">
+                        <h4>Trusted Patient-Centered Care</h4>
+                        <ul class="timeline-deliverables">
+                            <li>Enhanced Patient Engagement Platforms</li>
+                            <li>Patient and family advocacy Programs</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-so">
+                        <h4>Accessible and Inclusive Care</h4>
+                        <ul class="timeline-deliverables">
+                            <li>Age and Mobility-Friendly hospitals</li>
+                            <li>Hospital wide 'Activity and Mobility Program' (AMP)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-so">
+                        <h4>Integrated Care Across Continuum</h4>
+                        <ul class="timeline-deliverables">
+                            <li>Continuum of Care Framework Development</li>
+                            <li>Interdisciplinary culture development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showYear(year) {
+            // Update active year button
+            const yearButtons = document.querySelectorAll('.year-button');
+            yearButtons.forEach(button => button.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update timeline content based on year
+            const timelineContent = document.getElementById('timelineContent');
+            const timelineData = {
+                2024: {
+                    'High-Value, Efficient Care Delivery': [
+                        'Implementation of Cost-Effective Treatment Models',
+                        'Integrate digital health tools',
+                        'Resource Management'
+                    ],
+                    'Trusted Patient-Centered Care': [
+                        'Enhanced Patient Engagement Platforms',
+                        'Patient and family advocacy Programs'
+                    ],
+                    'Accessible and Inclusive Care': [
+                        'Age and Mobility-Friendly hospitals',
+                        'Hospital wide Activity and Mobility Program (AMP)'
+                    ],
+                    'Integrated Care Across Continuum': [
+                        'Continuum of Care Framework Development',
+                        'Interdisciplinary culture development'
+                    ]
+                },
+                2025: {
+                    'High-Value, Efficient Care Delivery': [
+                        'Performance Metrics and Outcome Measurement',
+                        'Financial Sustainability Programs',
+                        'Patient Flow Optimization'
+                    ],
+                    'Trusted Patient-Centered Care': [
+                        'Personalized Rehabilitation Plans',
+                        'Improved Patient, family, and caregiver Education'
+                    ],
+                    'Accessible and Inclusive Care': [
+                        'Universal Access to Assistive Technology',
+                        'Access Enhancement Through Digital Platforms'
+                    ],
+                    'Integrated Care Across Continuum': [
+                        'Patient Navigation and Case Management',
+                        'Technology Integration for Seamless Care Transitions'
+                    ]
+                }
+            };
+            
+            const yearData = timelineData[year];
+            if (yearData) {
+                let newContent = '<div class="timeline-grid">';
+                
+                Object.keys(yearData).forEach(so => {
+                    newContent += `
+                        <div class="timeline-so">
+                            <h4>${so}</h4>
+                            <ul class="timeline-deliverables">
+                                ${yearData[so].map(deliverable => `<li>${deliverable}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                });
+                
+                newContent += '</div>';
+                timelineContent.innerHTML = newContent;
+            }
+        }
+        
+        // Animated progress bar
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressFill = document.querySelector('.progress-fill');
+            setTimeout(() => {
+                progressFill.style.width = '30%';
+            }, 500);
+        });
+    </script>
+</body>
+</html>

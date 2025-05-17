@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPA 3: Sustainable Rehabilitation Workforce</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #2ecc71;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(46, 204, 113, 0.3);
+        }
+        
+        .back-button:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.4);
+        }
+        
+        .back-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(46, 204, 113, 0.3);
+        }
+        
+        .kpa-overview {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid #2ecc71;
+        }
+        
+        .kpa-overview h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-section {
+            background: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #bdc3c7;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2ecc71, #1abc9c);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            width: 25%;
+        }
+        
+        .progress-text {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 0.5rem;
+        }
+        
+        .so-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .so-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid #2ecc71;
+        }
+        
+        .so-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .so-card.workforce {
+            border-top-color: #3498db;
+        }
+        
+        .so-card.research {
+            border-top-color: #9b59b6;
+        }
+        
+        .so-card h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .so-card h3 i {
+            font-size: 1.8rem;
+            margin-right: 0.8rem;
+        }
+        
+        .deliverables-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .deliverables-list li {
+            background: #f8f9fa;
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border-left: 3px solid #2ecc71;
+            transition: all 0.3s;
+        }
+        
+        .deliverables-list li:hover {
+            background: #e8f5e9;
+            border-left-color: #27ae60;
+        }
+        
+        .timeline-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-section h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-nav {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .year-button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .year-button.active {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .year-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .timeline-content {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .timeline-so {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-so.workforce {
+            border-left: 4px solid #3498db;
+        }
+        
+        .timeline-so.research {
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .timeline-so h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .timeline-so h4 i {
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .timeline-deliverables {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .timeline-deliverables li {
+            background: #f8f9fa;
+            margin: 0.5rem 0;
+            padding: 0.6rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border-left: 2px solid #2ecc71;
+        }
+        
+        .icon-section {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            min-width: 200px;
+            border-top: 3px solid #2ecc71;
+        }
+        
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .icon-card .icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #2ecc71;
+        }
+        
+        .icon-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .so-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-nav {
+                gap: 0.5rem;
+            }
+            
+            .year-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .icon-section {
+                gap: 1rem;
+            }
+            
+            .icon-card {
+                min-width: 150px;
+                padding: 1.5rem;
+            }
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #d5f4e6 0%, #c3e9d0 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+            color: #2c3e50;
+            border: 1px solid #2ecc71;
+        }
+        
+        .highlight-box h3 {
+            margin-bottom: 0.5rem;
+            color: #27ae60;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-top: 3px solid #2ecc71;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2ecc71;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>KPA 3: Sustainable Rehabilitation Workforce</h1>
+        <p>Develop and maintain a highly skilled and motivated workforce dedicated to excellence in rehabilitation</p>
+    </div>
+    
+    <div class="container">
+<<<<<<< HEAD
+        <!-- FIXED: Properly formatted back button -->
+        <a href="index.html" class="back-button">Back To Dashboard</a>
+=======
+<<<<<<< HEAD
+        <a href="index.html" class="back-button">
+
+=======
+        <button class="nav-btn" onclick="window.location.href='index.html'">
+    Back To Dashboard
+</button>
+>>>>>>> 1a34740b91f154f2d4c8268c45cad2d996682faf
+>>>>>>> 252753da9b41cd7d29762f71cd0132848e68d8bf
+        
+        <div class="kpa-overview">
+            <h2>Overview</h2>
+            <p>This key priority area focuses on building a sustainable, highly skilled rehabilitation workforce through structured career development, comprehensive training programs, and robust research capabilities to ensure long-term excellence in rehabilitation services.</p>
+            
+            <div class="progress-section">
+                <h3>Overall Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-text">25% Complete</div>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h3>Building Excellence Through People</h3>
+            <p>Investing in our workforce through career development, mentorship, and research to create a culture of excellence and innovation in rehabilitation care</p>
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <span class="stat-number">2</span>
+                <span class="stat-label">Strategic Outcomes</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">20</span>
+                <span class="stat-label">Total Deliverables</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">9</span>
+                <span class="stat-label">Workforce Development Initiatives</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">11</span>
+                <span class="stat-label">Research & Academic Programs</span>
+            </div>
+        </div>
+        
+        <div class="so-grid">
+            <div class="so-card workforce">
+                <h3><i>👥</i>SO 1: Workforce Development and Incentives</h3>
+                <p>Creating structured career pathways, professional development opportunities, and incentive programs to attract, develop, and retain top rehabilitation professionals.</p>
+                <ul class="deliverables-list">
+                    <li>Structured Career Pathways</li>
+                    <li>Performance-Based Promotion</li>
+                    <li>Professional Development Opportunities</li>
+                    <li>Mentorship Programs</li>
+                    <li>Leadership Training</li>
+                    <li>Recognition Programs</li>
+                    <li>Financial Incentives</li>
+                    <li>Career Counseling Services</li>
+                    <li>Succession Planning</li>
+                </ul>
+            </div>
+            
+            <div class="so-card research">
+                <h3><i>🔬</i>SO 2: Building Research and Academic Capabilities</h3>
+                <p>Establishing comprehensive research and academic programs to advance rehabilitation science, foster innovation, and develop the next generation of rehabilitation leaders.</p>
+                <ul class="deliverables-list">
+                    <li>Certifications, Fellowship and Residency programs</li>
+                    <li>Training Workshops, Seminars & Online Learning Modules</li>
+                    <li>Clinical Observerships and Preceptorships</li>
+                    <li>Peer Learning and Case Reviews</li>
+                    <li>Clinical Skills Training and Simulation Labs</li>
+                    <li>Cultural Competency and Diversity Training</li>
+                    <li>Rehabilitation research training</li>
+                    <li>Rehab Research Collaboration Platforms</li>
+                    <li>Research Grants and Funding Opportunities</li>
+                    <li>Publication and Dissemination Support & Recognition and Awards</li>
+                    <li>Research & Innovation Incubators & QI clinics</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="icon-section">
+            <div class="icon-card">
+                <div class="icon">🎯</div>
+                <h3>Career Development</h3>
+                <p>Structured pathways for professional growth and advancement</p>
+            </div>
+            <div class="icon-card">
+                <div class="icon">🏆</div>
+                <h3>Recognition Programs</h3>
+                <p>Acknowledging excellence and achievements in rehabilitation care</p>
+            </div>
+            <div class="icon-card">
+                <div class="icon">📚</div>
+                <h3>Research Excellence</h3>
+                <p>Building world-class research capabilities and academic programs</p>
+            </div>
+            <div class="icon-card">
+                <div class="icon">🤝</div>
+                <h3>Mentorship</h3>
+                <p>Fostering growth through experienced guidance and support</p>
+            </div>
+        </div>
+        
+        <div class="timeline-section">
+            <h2>Implementation Timeline</h2>
+            <div class="timeline-nav">
+                <button class="year-button active" onclick="showYear(2024)">2024</button>
+                <button class="year-button" onclick="showYear(2025)">2025</button>
+                <button class="year-button" onclick="showYear(2026)">2026</button>
+                <button class="year-button" onclick="showYear(2027)">2027</button>
+                <button class="year-button" onclick="showYear(2028)">2028</button>
+                <button class="year-button" onclick="showYear(2029)">2029</button>
+                <button class="year-button" onclick="showYear(2030)">2030</button>
+            </div>
+            
+            <div class="timeline-content" id="timelineContent">
+                <div class="timeline-grid">
+                    <div class="timeline-so workforce">
+                        <h4><i>👥</i>Workforce Development and Incentives</h4>
+                        <ul class="timeline-deliverables">
+                            <li>Structured Career Pathways</li>
+                            <li>Performance-Based Promotion</li>
+                            <li>Professional Development Opportunities</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-so research">
+                        <h4><i>🔬</i>Building Research and Academic Capabilities</h4>
+                        <ul class="timeline-deliverables">
+                            <li>Certifications, Fellowship and Residency programs</li>
+                            <li>Training Workshops, Seminars & Online Learning Modules</li>
+                            <li>Clinical Observerships and Preceptorships</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showYear(year) {
+            // Update active year button
+            const yearButtons = document.querySelectorAll('.year-button');
+            yearButtons.forEach(button => button.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update timeline content based on year
+            const timelineContent = document.getElementById('timelineContent');
+            const timelineData = {
+                2024: {
+                    'Workforce Development and Incentives': [
+                        'Structured Career Pathways',
+                        'Performance-Based Promotion',
+                        'Professional Development Opportunities'
+                    ],
+                    'Building Research and Academic Capabilities': [
+                        'Certifications, Fellowship and Residency programs',
+                        'Training Workshops, Seminars & Online Learning Modules',
+                        'Clinical Observerships and Preceptorships'
+                    ]
+                },
+                2025: {
+                    'Workforce Development and Incentives': [
+                        'Mentorship Programs',
+                        'Leadership Training',
+                        'Recognition Programs'
+                    ],
+                    'Building Research and Academic Capabilities': [
+                        'Peer Learning and Case Reviews',
+                        'Clinical Skills Training and Simulation Labs',
+                        'Cultural Competency and Diversity Training'
+                    ]
+                },
+                2026: {
+                    'Workforce Development and Incentives': [
+                        'Financial Incentives',
+                        'Career Counseling Services',
+                        'Succession Planning'
+                    ],
+                    'Building Research and Academic Capabilities': [
+                        'Rehabilitation research training',
+                        'Rehab Research Collaboration Platforms',
+                        'Research Grants and Funding Opportunities'
+                    ]
+                },
+                2027: {
+                    'Workforce Development and Incentives': [
+                        'Advanced Career Development Programs',
+                        'Leadership Excellence Initiatives',
+                        'Employee Wellbeing Programs'
+                    ],
+                    'Building Research and Academic Capabilities': [
+                        'Publication and Dissemination Support',
+                        'Recognition and Awards Program',
+                        'Research & Innovation Incubators'
+                    ]
+                },
+                2028: {
+                    'Workforce Development and Incentives': [
+                        'Global Mobility Programs',
+                        'Executive Development Track',
+                        'Innovation Champions Program'
+                    ],
+                    'Building Research and Academic Capabilities': [
+                        'QI clinics',
+                        'International Research Collaborations',
+                        'Advanced Research Methodologies'
+                    ]
+                },
+                2029: {
+                    'Workforce Development and Incentives': [
+                        'Talent Pipeline Excellence',
+                        'Future Leaders Program',
+                        'Work-Life Balance Initiatives'
+                    ],
+                    'Building Research and Academic Capabilities': [
+                        'Research Center of Excellence',
+                        'PhD and Masters Programs',
+                        'International Faculty Exchange'
+                    ]
+                },
+                2030: {
+                    'Workforce Development and Incentives': [
+                        'Workforce Excellence Achievement',
+                        'Global Recognition as Employer of Choice',
+                        'Sustainable Career Development Model'
+                    ],
+                    'Building Research and Academic Capabilities': [
+                        'Research Excellence Global Recognition',
+                        'World-Class Academic Institution Status',
+                        'Innovation Hub Leadership'
+                    ]
+                }
+            };
+            
+            const yearData = timelineData[year];
+            let newContent = '<div class="timeline-grid">';
+            
+            Object.keys(yearData).forEach((so, index) => {
+                const classes = ['workforce', 'research'];
+                const icons = ['👥', '🔬'];
+                newContent += `
+                    <div class="timeline-so ${classes[index]}">
+                        <h4><i>${icons[index]}</i>${so}</h4>
+                        <ul class="timeline-deliverables">
+                            ${yearData[so].map(deliverable => `<li>${deliverable}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+            
+            newContent += '</div>';
+            timelineContent.innerHTML = newContent;
+        }
+        
+        // Animated progress bar
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressFill = document.querySelector('.progress-fill');
+            setTimeout(() => {
+                progressFill.style.width = '25%';
+            }, 500);
+        });
+    </script>
+</body>
+</html>

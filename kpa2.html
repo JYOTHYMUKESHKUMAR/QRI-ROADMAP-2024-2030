@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPA 2: Innovative Rehabilitation Ecosystem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #8e44ad 0%, #e74c3c 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+        }
+        
+        .back-button:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.4);
+        }
+        
+        .back-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+        }
+        
+        .kpa-overview {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .kpa-overview h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-section {
+            background: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #bdc3c7;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c, #f39c12);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            width: 20%;
+        }
+        
+        .progress-text {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 0.5rem;
+        }
+        
+        .so-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .so-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid #e74c3c;
+        }
+        
+        .so-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .so-card.innovation {
+            border-top-color: #3498db;
+        }
+        
+        .so-card.awareness {
+            border-top-color: #2ecc71;
+        }
+        
+        .so-card.community {
+            border-top-color: #f39c12;
+        }
+        
+        .so-card.tourism {
+            border-top-color: #9b59b6;
+        }
+        
+        .so-card h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .so-card h3 i {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+        
+        .deliverables-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .deliverables-list li {
+            background: #f8f9fa;
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border-left: 3px solid #e74c3c;
+            transition: all 0.3s;
+        }
+        
+        .deliverables-list li:hover {
+            background: #fdf2f2;
+            border-left-color: #c0392b;
+        }
+        
+        .timeline-section {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-section h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-nav {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .year-button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .year-button.active {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .year-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        
+        .timeline-content {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 1rem;
+        }
+        
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .timeline-so {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-so.innovation {
+            border-left: 4px solid #3498db;
+        }
+        
+        .timeline-so.awareness {
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .timeline-so.community {
+            border-left: 4px solid #f39c12;
+        }
+        
+        .timeline-so.tourism {
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .timeline-so h4 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-deliverables {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .timeline-deliverables li {
+            background: #f8f9fa;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            border-left: 2px solid #e74c3c;
+        }
+        
+        .icon-section {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            min-width: 200px;
+        }
+        
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .icon-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .icon-card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .so-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-nav {
+                gap: 0.5rem;
+            }
+            
+            .year-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .icon-section {
+                gap: 1rem;
+            }
+            
+            .icon-card {
+                min-width: 150px;
+            }
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .highlight-box h3 {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>KPA 2: Innovative Rehabilitation Ecosystem</h1>
+        <p>Become a leader in innovative rehabilitation through cutting-edge technology, research, and community engagement</p>
+    </div>
+    
+    <div class="container">
+<<<<<<< HEAD
+        <!-- FIXED: Added proper closing tag and text content -->
+        <a href="index.html" class="back-button">Back To Dashboard</a>
+=======
+<<<<<<< HEAD
+
+        <a href="index.html" class="back-button">
+
+>>>>>>> 252753da9b41cd7d29762f71cd0132848e68d8bf
+        
+=======
+        <button class="nav-btn" onclick="window.location.href='index.html'">
+    Back To Dashboard
+</button>
+>>>>>>> 1a34740b91f154f2d4c8268c45cad2d996682faf
+        <div class="kpa-overview">
+            <h2>Overview</h2>
+            <p>This key priority area focuses on creating an innovative rehabilitation ecosystem that leverages cutting-edge technology, data-driven decision making, and community engagement to enhance rehabilitation services and outcomes.</p>
+            
+            <div class="progress-section">
+                <h3>Overall Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-text">20% Complete</div>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <h3>Innovation at the Core</h3>
+            <p>Transforming rehabilitation through data excellence, technology integration, and community partnerships to create a world-class ecosystem for patient care and outcomes</p>
+        </div>
+        
+        <div class="so-grid">
+            <div class="so-card innovation">
+                <h3><i>🔬</i>SO 1: Innovation in Rehabilitation and Data-Driven Decision Making</h3>
+                <p>Leveraging technology and data analytics to drive innovation in rehabilitation services and improve decision-making processes.</p>
+                <ul class="deliverables-list">
+                    <li>Rehabilitation Data System</li>
+                    <li>Precision Rehabilitation</li>
+                    <li>Centralised rehabilitation delivery system</li>
+                    <li>Data-Driven service Optimisation</li>
+                    <li>Automation and Integration</li>
+                    <li>Technology-Enhanced Training and Education</li>
+                    <li>E-Health Rehabilitation Services</li>
+                    <li>Predictive Health Modelling</li>
+                </ul>
+            </div>
+            
+            <div class="so-card awareness">
+                <h3><i>📢</i>SO 2: Public Awareness and Visibility</h3>
+                <p>Increasing public awareness of rehabilitation services and establishing QRI as a leading rehabilitation institution regionally and globally.</p>
+                <ul class="deliverables-list">
+                    <li>Comprehensive Marketing Campaigns</li>
+                    <li>Collaborations with Media</li>
+                    <li>Digital Presence Enhancement</li>
+                    <li>Patient and Family Testimonials</li>
+                    <li>Public Relations Initiatives</li>
+                    <li>Participation in National and International Days</li>
+                    <li>International Recognitions</li>
+                </ul>
+            </div>
+            
+            <div class="so-card community">
+                <h3><i>🤝</i>SO 3: Community Empowerment and Integration</h3>
+                <p>Engaging communities and empowering individuals through collaborative programs and accessible rehabilitation services.</p>
+                <ul class="deliverables-list">
+                    <li>Collaboration with Community Organizations</li>
+                    <li>Accessible Infrastructure Projects</li>
+                    <li>Community Early Intervention and Rehab Hub</li>
+                    <li>Peer Support Networks</li>
+                    <li>Training for Community Members</li>
+                    <li>Accessibility Audits and Consultations</li>
+                    <li>Community Volunteer Programs</li>
+                    <li>Celebrating Diversity and Inclusion</li>
+                    <li>Digitalisation Community rehabilitation services</li>
+                    <li>Mobile Rehabilitation Teams</li>
+                </ul>
+            </div>
+            
+            <div class="so-card tourism">
+                <h3><i>🌍</i>SO 4: Rehabilitation Health Tourism Strategy</h3>
+                <p>Establishing Qatar as a destination for world-class rehabilitation services to attract international patients and showcase excellence.</p>
+                <ul class="deliverables-list">
+                    <li>Tailored Rehabilitation Programs</li>
+                    <li>International Patient Concierge Service</li>
+                    <li>Cutting-Edge Rehabilitation Technology Showcase</li>
+                    <li>Outcome-Focused Rehabilitation Success Stories</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="icon-section">
+            <div class="icon-card">
+                <div class="icon">📊</div>
+                <h3>Data Excellence</h3>
+                <p>Advanced data systems and analytics driving precision rehabilitation</p>
+            </div>
+            <div class="icon-card">
+                <div class="icon">💡</div>
+                <h3>Innovation Hub</h3>
+                <p>Cutting-edge technology and research powering breakthroughs</p>
+            </div>
+            <div class="icon-card">
+                <div class="icon">🌟</div>
+                <h3>Global Recognition</h3>
+                <p>International visibility and reputation for excellence</p>
+            </div>
+            <div class="icon-card">
+                <div class="icon">🏥</div>
+                <h3>Health Tourism</h3>
+                <p>World-class destination for rehabilitation services</p>
+            </div>
+        </div>
+        
+        <div class="timeline-section">
+            <h2>Implementation Timeline</h2>
+            <div class="timeline-nav">
+                <button class="year-button active" onclick="showYear(2024)">2024</button>
+                <button class="year-button" onclick="showYear(2025)">2025</button>
+                <button class="year-button" onclick="showYear(2026)">2026</button>
+                <button class="year-button" onclick="showYear(2027)">2027</button>
+                <button class="year-button" onclick="showYear(2028)">2028</button>
+                <button class="year-button" onclick="showYear(2029)">2029</button>
+                <button class="year-button" onclick="showYear(2030)">2030</button>
+            </div>
+            
+            <div class="timeline-content" id="timelineContent">
+                <div class="timeline-grid">
+                    <div class="timeline-so innovation">
+                        <h4>Innovation & Data-Driven Decision Making</h4>
+                        <ul class="timeline-deliverables">
+                            <li>Rehabilitation Data System</li>
+                            <li>Precision Rehabilitation</li>
+                            <li>Centralised rehabilitation delivery system</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-so awareness">
+                        <h4>Public awareness and visibility</h4>
+                        <ul class="timeline-deliverables">
+                            <li>Comprehensive Marketing Campaigns</li>
+                            <li>Collaborations with Media</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-so community">
+                        <h4>Community Empowerment and Integration</h4>
+                        <ul class="timeline-deliverables">
+                            <li>Collaboration with Community Organizations</li>
+                            <li>Accessible Infrastructure Projects</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-so tourism">
+                        <h4>Rehabilitation Health Tourism Strategy</h4>
+                        <ul class="timeline-deliverables">
+                            <li>Tailored Rehabilitation Programs</li>
+                            <li>International Patient Concierge Service</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showYear(year) {
+            // Update active year button
+            const yearButtons = document.querySelectorAll('.year-button');
+            yearButtons.forEach(button => button.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update timeline content based on year
+            const timelineContent = document.getElementById('timelineContent');
+            const timelineData = {
+                2024: {
+                    'Innovation & Data-Driven Decision Making': [
+                        'Rehabilitation Data System',
+                        'Precision Rehabilitation',
+                        'Centralised rehabilitation delivery system'
+                    ],
+                    'Public awareness and visibility': [
+                        'Comprehensive Marketing Campaigns',
+                        'Collaborations with Media'
+                    ],
+                    'Community Empowerment and Integration': [
+                        'Collaboration with Community Organizations',
+                        'Accessible Infrastructure Projects'
+                    ],
+                    'Rehabilitation Health Tourism Strategy': [
+                        'Tailored Rehabilitation Programs',
+                        'International Patient Concierge Service'
+                    ]
+                },
+                2025: {
+                    'Innovation & Data-Driven Decision Making': [
+                        'Data-Driven service Optimisation',
+                        'Automation and Integration',
+                        'Technology-Enhanced Training and Education'
+                    ],
+                    'Public awareness and visibility': [
+                        'Digital Presence Enhancement',
+                        'Patient and Family Testimonials'
+                    ],
+                    'Community Empowerment and Integration': [
+                        'Community Early Intervention and Rehab Hub',
+                        'Peer Support Networks'
+                    ],
+                    'Rehabilitation Health Tourism Strategy': [
+                        'Cutting-Edge Rehabilitation Technology Showcase',
+                        'Outcome-Focused Rehabilitation Success Stories'
+                    ]
+                },
+                2026: {
+                    'Innovation & Data-Driven Decision Making': [
+                        'E-Health Rehabilitation Services',
+                        'Predictive Health Modelling',
+                        'Advanced Analytics Implementation'
+                    ],
+                    'Public awareness and visibility': [
+                        'Public Relations Initiatives',
+                        'Participation in National and International Days'
+                    ],
+                    'Community Empowerment and Integration': [
+                        'Training for Community Members',
+                        'Accessibility Audits and Consultations'
+                    ],
+                    'Rehabilitation Health Tourism Strategy': [
+                        'International Marketing Expansion',
+                        'Premium Service Development'
+                    ]
+                },
+                2027: {
+                    'Innovation & Data-Driven Decision Making': [
+                        'AI-Powered Rehabilitation Solutions',
+                        'Advanced Data Integration',
+                        'Predictive Analytics Excellence'
+                    ],
+                    'Public awareness and visibility': [
+                        'International Recognitions',
+                        'Global Thought Leadership'
+                    ],
+                    'Community Empowerment and Integration': [
+                        'Community Volunteer Programs',
+                        'Celebrating Diversity and Inclusion'
+                    ],
+                    'Rehabilitation Health Tourism Strategy': [
+                        'VIP Service Enhancement',
+                        'Cultural Adaptation Programs'
+                    ]
+                },
+                2028: {
+                    'Innovation & Data-Driven Decision Making': [
+                        'Smart Rehabilitation Systems',
+                        'Machine Learning Implementation',
+                        'IoT Integration'
+                    ],
+                    'Public awareness and visibility': [
+                        'Global Recognition Achievement',
+                        'Award-Winning Campaigns'
+                    ],
+                    'Community Empowerment and Integration': [
+                        'Digitalisation Community rehabilitation services',
+                        'Mobile Rehabilitation Teams'
+                    ],
+                    'Rehabilitation Health Tourism Strategy': [
+                        'Medical Tourism Excellence',
+                        'International Partnerships'
+                    ]
+                },
+                2029: {
+                    'Innovation & Data-Driven Decision Making': [
+                        'Robotic Rehabilitation Systems',
+                        'Virtual Reality Integration',
+                        'Augmented Reality Applications'
+                    ],
+                    'Public awareness and visibility': [
+                        'Global Brand Recognition',
+                        'International Media Presence'
+                    ],
+                    'Community Empowerment and Integration': [
+                        'Community-Centered Excellence',
+                        'Inclusive Society Programs'
+                    ],
+                    'Rehabilitation Health Tourism Strategy': [
+                        'World-Class Destination Status',
+                        'Premium Care Excellence'
+                    ]
+                },
+                2030: {
+                    'Innovation & Data-Driven Decision Making': [
+                        'Innovation Excellence Achievement',
+                        'Data-Driven Care Mastery',
+                        'Technology Leadership'
+                    ],
+                    'Public awareness and visibility': [
+                        'Global Recognition Leader',
+                        'International Best Practice'
+                    ],
+                    'Community Empowerment and Integration': [
+                        'Community Integration Excellence',
+                        'Inclusive Rehabilitation Ecosystem'
+                    ],
+                    'Rehabilitation Health Tourism Strategy': [
+                        'Medical Tourism Global Leader',
+                        'Ultimate Care Experience'
+                    ]
+                }
+            };
+            
+            const yearData = timelineData[year];
+            let newContent = '<div class="timeline-grid">';
+            
+            Object.keys(yearData).forEach((so, index) => {
+                const classes = ['innovation', 'awareness', 'community', 'tourism'];
+                newContent += `
+                    <div class="timeline-so ${classes[index]}">
+                        <h4>${so}</h4>
+                        <ul class="timeline-deliverables">
+                            ${yearData[so].map(deliverable => `<li>${deliverable}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+            
+            newContent += '</div>';
+            timelineContent.innerHTML = newContent;
+        }
+        
+        // Animated progress bar
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressFill = document.querySelector('.progress-fill');
+            setTimeout(() => {
+                progressFill.style.width = '20%';
+            }, 500);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRI Strategic Roadmap - Assignments</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+        }
+        
+        .back-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.4);
+        }
+        
+        .back-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+        }
+        
+        .assignments-overview {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+        
+        .assignments-overview h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .filter-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .filter-group select {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            font-size: 0.9rem;
+        }
+        
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .assignments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .assignment-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+        
+        .assignment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .assignment-card.kpa1 {
+            border-left-color: #3498db;
+        }
+        
+        .assignment-card.kpa2 {
+            border-left-color: #e74c3c;
+        }
+        
+        .assignment-card.kpa3 {
+            border-left-color: #2ecc71;
+        }
+        
+        .assignment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .assignment-title {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .assignment-id {
+            background: #ecf0f1;
+            color: #7f8c8d;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .assignment-details {
+            margin-bottom: 1rem;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .detail-label {
+            font-weight: 600;
+            color: #34495e;
+        }
+        
+        .detail-value {
+            color: #7f8c8d;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-planning {
+            background: #fef9e7;
+            color: #f39c12;
+        }
+        
+        .status-inprogress {
+            background: #e3f2fd;
+            color: #2196f3;
+        }
+        
+        .status-completed {
+            background: #e8f5e9;
+            color: #4caf50;
+        }
+        
+        .status-delayed {
+            background: #ffebee;
+            color: #f44336;
+        }
+        
+        .progress-section {
+            margin-top: 1rem;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #ecf0f1;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+        
+        .progress-text {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        
+        .assignment-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .action-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        
+        .btn-secondary {
+            background: #ecf0f1;
+            color: #34495e;
+        }
+        
+        .btn-secondary:hover {
+            background: #d5d8dc;
+        }
+        
+        .statistics-section {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-top: 3px solid #3498db;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #7f8c8d;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #bdc3c7;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .assignments-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .filter-group {
+                justify-content: space-between;
+            }
+            
+            .assignment-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Strategic Roadmap Assignments</h1>
+        <p>Track and manage all deliverables across the three Key Priority Areas</p>
+    </div>
+    
+    <div class="container">
+        <!-- FIXED: Added proper text content and enhanced styling -->
+        <a href="index.html" class="back-button">Back To Dashboard</a>
+        
+        <div class="assignments-overview">
+            <h2>Assignment Management</h2>
+            <p>Monitor progress, assign responsibilities, and track deliverables across all strategic outcomes from KPA 1, KPA 2, and KPA 3.</p>
+        </div>
+        
+        <div class="statistics-section">
+            <h3 style="margin-bottom: 1rem; color: #2c3e50;">Assignment Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">79</span>
+                    <span class="stat-label">Total Assignments</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">23</span>
+                    <span class="stat-label">Completed</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">41</span>
+                    <span class="stat-label">In Progress</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Planned</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filter-section">
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="kpaFilter">KPA:</label>
+                    <select id="kpaFilter" onchange="filterAssignments()">
+                        <option value="">All KPAs</option>
+                        <option value="KPA1">KPA 1: Universal Access</option>
+                        <option value="KPA2">KPA 2: Innovation</option>
+                        <option value="KPA3">KPA 3: Workforce</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="statusFilter">Status:</label>
+                    <select id="statusFilter" onchange="filterAssignments()">
+                        <option value="">All Status</option>
+                        <option value="planning">Planning</option>
+                        <option value="inprogress">In Progress</option>
+                        <option value="completed">Completed</option>
+                        <option value="delayed">Delayed</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="yearFilter">Year:</label>
+                    <select id="yearFilter" onchange="filterAssignments()">
+                        <option value="">All Years</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                    </select>
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" id="searchBox" placeholder="Search assignments..." onkeyup="filterAssignments()">
+                </div>
+            </div>
+        </div>
+        
+        <div class="assignments-grid" id="assignmentsGrid">
+            <!-- Assignment cards will be dynamically generated -->
+        </div>
+    </div>
+    
+    <!-- Modal for assignment details -->
+    <div id="assignmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('assignmentModal')">&times;</span>
+            <h2>Assignment Details</h2>
+            <div id="modalContent">
+                <p><strong>Assignment:</strong> <span id="modalTitle"></span></p>
+                <p><strong>Description:</strong> <span id="modalDescription"></span></p>
+                <p><strong>Owner:</strong> <span id="modalOwner"></span></p>
+                <p><strong>Timeline:</strong> <span id="modalTimeline"></span></p>
+                <p><strong>Resources:</strong> <span id="modalResources"></span></p>
+                <p><strong>Dependencies:</strong> <span id="modalDependencies"></span></p>
+                <p><strong>Success Criteria:</strong> <span id="modalCriteria"></span></p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Sample data for all assignments
+        const assignments = [
+            // KPA 1 Assignments
+            {
+                id: "SO1-1.1",
+                title: "Implementation of Cost-Effective Treatment Models",
+                kpa: "KPA1",
+                status: "inprogress",
+                year: "2024",
+                team: "Clinical Operations",
+                priority: "High",
+                progress: 65,
+                description: "Develop and implement standardized care pathways to streamline rehabilitation processes and adopt best practices.",
+                owner: "Dr. Sarah Johnson",
+                timeline: "Jan 2024 - Dec 2024",
+                resources: "Clinical team, Process improvement specialists",
+                dependencies: "Staff training, EHR system updates",
+                criteria: "Reduced treatment costs by 15%, Improved patient outcomes"
+            },
+            {
+                id: "SO1-1.2",
+                title: "Integrate Digital Health Tools",
+                kpa: "KPA1",
+                status: "planning",
+                year: "2024",
+                team: "Digital Health",
+                priority: "High",
+                progress: 25,
+                description: "Leverage tele-rehabilitation platforms and digital monitoring tools.",
+                owner: "Mark Chen",
+                timeline: "Mar 2024 - Sep 2024",
+                resources: "IT team, Telehealth platform",
+                dependencies: "Internet infrastructure, Staff training",
+                criteria: "50% increase in remote consultations"
+            },
+            {
+                id: "SO1-1.3",
+                title: "Resource Management",
+                kpa: "KPA1",
+                status: "inprogress",
+                year: "2024",
+                team: "Operations",
+                priority: "Medium",
+                progress: 40,
+                description: "Optimize equipment and facility utilization through scheduling systems.",
+                owner: "Lisa Wang",
+                timeline: "Feb 2024 - Aug 2024",
+                resources: "Scheduling software, Analytics team",
+                dependencies: "Equipment inventory, Staff schedules",
+                criteria: "20% improvement in resource utilization"
+            },
+            {
+                id: "SO1-2.1",
+                title: "Enhanced Patient Engagement Platforms",
+                kpa: "KPA1",
+                status: "inprogress",
+                year: "2024",
+                team: "Patient Experience",
+                priority: "High",
+                progress: 55,
+                description: "Develop platforms to improve patient engagement and communication.",
+                owner: "Dr. Ahmed Ali",
+                timeline: "Mar 2024 - Oct 2024",
+                resources: "UX designers, Patient advocates",
+                dependencies: "Patient feedback, Platform integration",
+                criteria: "80% patient satisfaction rate"
+            },
+            
+            // KPA 2 Assignments
+            {
+                id: "SO2-1.1",
+                title: "Rehabilitation Data System",
+                kpa: "KPA2",
+                status: "planning",
+                year: "2024",
+                team: "IT & Data Analytics",
+                priority: "High",
+                progress: 15,
+                description: "Develop comprehensive data collection and analytics system for rehabilitation services.",
+                owner: "David Lee",
+                timeline: "Apr 2024 - Dec 2024",
+                resources: "Data engineers, Software developers",
+                dependencies: "Data governance policies, Security clearance",
+                criteria: "Real-time data dashboard, Predictive analytics"
+            },
+            {
+                id: "SO2-1.2",
+                title: "Precision Rehabilitation",
+                kpa: "KPA2",
+                status: "delayed",
+                year: "2024",
+                team: "Research & Innovation",
+                priority: "High",
+                progress: 10,
+                description: "Implement personalized treatment plans based on data analytics and AI.",
+                owner: "Dr. Emma Rodriguez",
+                timeline: "Jun 2024 - Mar 2025",
+                resources: "AI specialists, Clinical researchers",
+                dependencies: "Data system implementation, Algorithm validation",
+                criteria: "Personalized treatment protocols, Improved outcomes"
+            },
+            {
+                id: "SO2-2.1",
+                title: "Comprehensive Marketing Campaigns",
+                kpa: "KPA2",
+                status: "inprogress",
+                year: "2024",
+                team: "Marketing & Communications",
+                priority: "Medium",
+                progress: 55,
+                description: "Launch multi-channel marketing campaigns to increase awareness of QRI services.",
+                owner: "Jennifer Adams",
+                timeline: "Jan 2024 - Oct 2024",
+                resources: "Marketing team, Creative agency",
+                dependencies: "Brand guidelines, Budget approval",
+                criteria: "30% increase in brand awareness"
+            },
+            {
+                id: "SO2-3.1",
+                title: "Community Early Intervention and Rehab Hub",
+                kpa: "KPA2",
+                status: "planning",
+                year: "2025",
+                team: "Community Outreach",
+                priority: "High",
+                progress: 5,
+                description: "Establish community-based rehabilitation hubs for early intervention.",
+                owner: "Dr. Fatima Al-Zahra",
+                timeline: "Mar 2025 - Dec 2025",
+                resources: "Community coordinators, Mobile units",
+                dependencies: "Community partnerships, Facility setup",
+                criteria: "5 operational hubs, Increased early intervention rates"
+            },
+            
+            // KPA 3 Assignments
+            {
+                id: "SO3-1.1",
+                title: "Structured Career Pathways",
+                kpa: "KPA3",
+                status: "completed",
+                year: "2024",
+                team: "Human Resources",
+                priority: "Medium",
+                progress: 100,
+                description: "Define clear career progression paths for all rehabilitation staff.",
+                owner: "Michael Thompson",
+                timeline: "Oct 2023 - Mar 2024",
+                resources: "HR team, Career consultants",
+                dependencies: "Job analysis, Competency mapping",
+                criteria: "Documented career paths, Staff satisfaction increase"
+            },
+            {
+                id: "SO3-1.2",
+                title: "Performance-Based Promotion",
+                kpa: "KPA3",
+                status: "inprogress",
+                year: "2024",
+                team: "Human Resources",
+                priority: "High",
+                progress: 70,
+                description: "Implement merit-based promotion system tied to performance metrics.",
+                owner: "Sarah Kim",
+                timeline: "Feb 2024 - Sep 2024",
+                resources: "HR systems, Performance metrics",
+                dependencies: "Career pathways, Evaluation criteria",
+                criteria: "Fair promotion process, Increased motivation"
+            },
+            {
+                id: "SO3-2.1",
+                title: "Certifications and Fellowship Programs",
+                kpa: "KPA3",
+                status: "planning",
+                year: "2024",
+                team: "Education & Training",
+                priority: "High",
+                progress: 30,
+                description: "Establish specialized certification and fellowship programs for rehabilitation professionals.",
+                owner: "Dr. Robert Martinez",
+                timeline: "Jun 2024 - Dec 2025",
+                resources: "Academic partnerships, Training materials",
+                dependencies: "Accreditation approval, Curriculum development",
+                criteria: "Certified professionals, Fellowship graduates"
+            },
+            {
+                id: "SO3-2.2",
+                title: "Research Grants and Funding Opportunities",
+                kpa: "KPA3",
+                status: "planning",
+                year: "2024",
+                team: "Research Office",
+                priority: "Medium",
+                progress: 20,
+                description: "Develop grant programs to support rehabilitation research initiatives.",
+                owner: "Dr. Hassan Al-Mahmoud",
+                timeline: "May 2024 - Dec 2024",
+                resources: "Grant writers, Research administrators",
+                dependencies: "Research strategy, Funding sources",
+                criteria: "5 funded research projects, External grants secured"
+            }
+        ];
+        
+        let currentAssignments = [...assignments];
+        
+        // Initialize assignments grid
+        function initializeAssignments() {
+            renderAssignments(currentAssignments);
+            updateStatistics();
+        }
+        
+        // Render assignments in the grid
+        function renderAssignments(assignmentsToRender) {
+            const grid = document.getElementById('assignmentsGrid');
+            
+            if (assignmentsToRender.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1 / -1;">
+                        <i>📋</i>
+                        <h3>No assignments found</h3>
+                        <p>Try adjusting your filters or search criteria</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = assignmentsToRender.map(assignment => `
+                <div class="assignment-card ${assignment.kpa.toLowerCase()}" data-kpa="${assignment.kpa}" data-status="${assignment.status}" data-year="${assignment.year}">
+                    <div class="assignment-header">
+                        <div>
+                            <div class="assignment-title">${assignment.title}</div>
+                            <div class="assignment-id">${assignment.id}</div>
+                        </div>
+                        <div class="status-badge status-${assignment.status}">${formatStatus(assignment.status)}</div>
+                    </div>
+                    <div class="assignment-details">
+                        <div class="detail-row">
+                            <span class="detail-label">KPA:</span>
+                            <span class="detail-value">${formatKPA(assignment.kpa)}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Responsible Team:</span>
+                            <span class="detail-value">${assignment.team}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Target Year:</span>
+                            <span class="detail-value">${assignment.year}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Priority:</span>
+                            <span class="detail-value">${assignment.priority}</span>
+                        </div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${assignment.progress}%"></div>
+                        </div>
+                        <div class="progress-text">${assignment.progress}% Complete</div>
+                    </div>
+                    <div class="assignment-actions">
+                        <button class="action-button btn-primary" onclick="openAssignmentModal('${assignment.id}')">View Details</button>
+                        <button class="action-button btn-secondary">Update Status</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Format status display
+        function formatStatus(status) {
+            const statusMap = {
+                'planning': 'Planning',
+                'inprogress': 'In Progress',
+                'completed': 'Completed',
+                'delayed': 'Delayed'
+            };
+            return statusMap[status] || status;
+        }
+        
+        // Format KPA display
+        function formatKPA(kpa) {
+            const kpaMap = {
+                'KPA1': 'KPA 1: Universal Access',
+                'KPA2': 'KPA 2: Innovation',
+                'KPA3': 'KPA 3: Workforce'
+            };
+            return kpaMap[kpa] || kpa;
+        }
+        
+        // Filter assignments based on selected criteria
+        function filterAssignments() {
+            const kpaFilter = document.getElementById('kpaFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const yearFilter = document.getElementById('yearFilter').value;
+            const searchQuery = document.getElementById('searchBox').value.toLowerCase();
+            
+            currentAssignments = assignments.filter(assignment => {
+                const matchesKPA = !kpaFilter || assignment.kpa === kpaFilter;
+                const matchesStatus = !statusFilter || assignment.status === statusFilter;
+                const matchesYear = !yearFilter || assignment.year === yearFilter;
+                const matchesSearch = !searchQuery || 
+                    assignment.title.toLowerCase().includes(searchQuery) ||
+                    assignment.team.toLowerCase().includes(searchQuery) ||
+                    assignment.description.toLowerCase().includes(searchQuery);
+                
+                return matchesKPA && matchesStatus && matchesYear && matchesSearch;
+            });
+            
+            renderAssignments(currentAssignments);
+            updateStatistics();
+        }
+        
+        // Update statistics display
+        function updateStatistics() {
+            const total = assignments.length;
+            const completed = assignments.filter(a => a.status === 'completed').length;
+            const inProgress = assignments.filter(a => a.status === 'inprogress').length;
+            const planning = assignments.filter(a => a.status === 'planning').length;
+            const delayed = assignments.filter(a => a.status === 'delayed').length;
+            
+            document.querySelector('.stat-card:nth-child(1) .stat-number').textContent = total;
+            document.querySelector('.stat-card:nth-child(2) .stat-number').textContent = completed;
+            document.querySelector('.stat-card:nth-child(3) .stat-number').textContent = inProgress;
+            document.querySelector('.stat-card:nth-child(4) .stat-number').textContent = planning;
+        }
+        
+        // Open modal with assignment details
+        function openAssignmentModal(assignmentId) {
+            const assignment = assignments.find(a => a.id === assignmentId);
+            if (!assignment) return;
+            
+            document.getElementById('modalTitle').textContent = assignment.title;
+            document.getElementById('modalDescription').textContent = assignment.description;
+            document.getElementById('modalOwner').textContent = assignment.owner;
+            document.getElementById('modalTimeline').textContent = assignment.timeline;
+            document.getElementById('modalResources').textContent = assignment.resources;
+            document.getElementById('modalDependencies').textContent = assignment.dependencies;
+            document.getElementById('modalCriteria').textContent = assignment.criteria;
+            
+            openModal('assignmentModal');
+        }
+        
+        // Open modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+        
+        // Close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAssignments();
+        });
+    </script>
+</body>
+</html>
